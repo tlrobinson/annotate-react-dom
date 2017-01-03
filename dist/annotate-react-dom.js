@@ -138,5 +138,5 @@ function getReactOwner(node) {
 
 // works for both class and stateless function components
 function getReactElementName(element) {
-    return element.type.name;
+    return element.type.displayName || element.type.name;
 }

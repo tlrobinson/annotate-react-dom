@@ -55,7 +55,8 @@ export function installSynchronousAnnotator(node: Node = document, options: Opti
 // HELPERS
 
 type ReactComponent = {
-    name: string
+    name: string,
+    displayName?: string,
 };
 type ReactElement = {
     type: ReactComponent,
@@ -85,5 +86,5 @@ export function getReactOwner(node: ?Node): ?ReactInternalInstance {
 
 // works for both class and stateless function components
 export function getReactElementName(element: ReactElement): string {
-    return element.type.name;
+    return element.type.displayName || element.type.name;
 }
