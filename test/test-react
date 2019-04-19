@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -eu
+
+yarn init -y > /dev/null
+yarn add react@$1 react-dom@$1
+jest

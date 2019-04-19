@@ -122,10 +122,18 @@ function installSynchronousAnnotator() {
 
 // HELPERS
 
+// pre-Fiber
+
+
+// Fiber
+
+
+var RII_REGEX = /^__reactInternalInstance\$/;
+var RII_MIN_LENGTH = "__reactInternalInstance$".length;
 function getReactInternalInstance(node) {
   if (node) {
     for (var _name in node) {
-      if (_name.startsWith("__reactInternalInstance$")) {
+      if (_name.length >= RII_MIN_LENGTH && RII_REGEX.test(_name)) {
         // $FlowFixMe
         return node[_name];
       }

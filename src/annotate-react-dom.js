@@ -74,23 +74,29 @@ type ReactComponent = {
   displayName?: string
 };
 type ReactType = string | ReactComponent;
+type ReactInternalInstance = LegacyReactInternalInstance | FiberNode;
+
+// pre-Fiber
 type ReactElement = {
   type: ReactType,
-  _owner: ReactInternalInstance
+  _owner: LegacyReactInternalInstance
 };
 type LegacyReactInternalInstance = {
   _currentElement: ReactElement
 };
+
+// Fiber
 type FiberNode = {
   _debugOwner: FiberNode,
   type: ReactType
 };
-type ReactInternalInstance = LegacyReactInternalInstance | FiberNode;
 
+const RII_REGEX = /^__reactInternalInstance\$/;
+const RII_MIN_LENGTH = "__reactInternalInstance$".length;
 export function getReactInternalInstance(node: ?Node): ?ReactInternalInstance {
   if (node) {
     for (const name in node) {
-      if (name.startsWith("__reactInternalInstance$")) {
+      if (name.length >= RII_MIN_LENGTH && RII_REGEX.test(name)) {
         // $FlowFixMe
         return node[name];
       }

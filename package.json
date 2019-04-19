@@ -8,6 +8,7 @@
     "build-watch": "babel src --watch --out-dir dist",
     "test": "jest",
     "test-watch": "jest --watch",
+    "test-all-versions": "cd test && ./test-react 15 && ./test-react 16",
     "lint": "eslint src/*.js"
   },
   "devDependencies": {
@@ -22,8 +23,7 @@
     "eslint-plugin-react": "^6.8.0",
     "jest": "^18.0.0",
     "prettier": "^1.17.0",
-    "react": "^15.4.1",
-    "react-addons-test-utils": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   }
 }
